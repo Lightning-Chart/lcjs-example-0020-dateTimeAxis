@@ -1,4 +1,4 @@
-/**
+/*
  * LightningChart JS Example that showcases a Customer Satisfaction graph using a LineSeries and DateTime-Axis.
  */
 // Import LightningChartJS

@@ -21,7 +21,7 @@ const chart = lightningChart().ChartXY({
 chart.setPadding({ right: '5' })
 
 // Add a progressive line series.
-// Using the DataPatterns ojbect to select the horizontalProgressive pattern for the line series.
+// Using the DataPatterns object to select the horizontalProgressive pattern for the line series.
 const lineSeries = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
     .setName('Customer Satisfaction')
 

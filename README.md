@@ -46,7 +46,7 @@ const originDate = new Date(2002, 0, 1, 13)
 const dateTimeTickStrategy = AxisTickStrategies.DateTime(originDate)
 ```
 
-If this *TickStrategy* would be supplied to an *X-Axis*, it would effectively mean that its scale would start from 1st of January 2002 14PM, so a *XY-point* with coordinates `{ x: 0, y: 0 }` would be formated as `{ x: 1.1.2002 14:00, y: 0 }`.
+If this *TickStrategy* would be supplied to an *X-Axis*, it would effectively mean that its scale would start from 1st of January 2002 14PM, so a *XY-point* with coordinates `{ x: 0, y: 0 }` would be formated as `{ x: "1.1.2002 14:00", y: 0 }`.
 
 
 It is worth mentioning that big *DateTime*-intervals can produce severe precision problems (eq. when zooming in). The only way to battle this is by reducing the distance of timestamps from the active *origin-date*.

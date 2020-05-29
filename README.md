@@ -80,7 +80,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[AxisTickStrategies]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/globals.html#axistickstrategies
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/chartxy.html
-[ProgressiveLineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/progressivelineseries.html
+[AxisTickStrategies]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#axistickstrategies
+[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
+[ProgressiveLineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/progressivelineseries.html
 

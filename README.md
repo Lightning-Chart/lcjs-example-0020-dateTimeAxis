@@ -21,29 +21,29 @@ The demo can be used as an example or a seed project. Local execution requires t
 
 This example shows creation of a DateTime Axis, for rendering XY-series where either/both of X/Y dimensions can present *time*. This doesn't affect the input of data - format remains as *{x: number, y: number}* - however, DateTime-axes format their values from number to a date and time. This affects axis labels, markers and cursors.
 
-A DateTime-*Axis* is created by specifying its *TickStrategy*. Here's how it looks when creating a new *Axis*:
+A DateTime-*Axis* is created by specifying its *TickStrategy*. Here's how it looks when setting the *Axis TickStrategy*:
 
 ```javascript
-const bottomAxisDateTime = chart.addAxisX(false, AxisTickStrategies.DateTime())
-```
-
-If you want to specify the *TickStrategy* of a default *Axis*, you must do it when constructing the *ChartXY* using *ChartXYOptions* interface:
-```javascript
-const chart = lightningChart().ChartXY({
-    // ChartXYOptions
-    defaultAxisXTickStrategy: AxisTickStrategies.DateTime()
-})
+// Add an XY Chart
+const chart = lightningChart().ChartXY({})
+// Set the TickStrategy of the default X Axis to a DateTime TickStrategy
+chart.getDefaultAxisX().setTickStrategy( AxisTickStrategies.DateTime )
 ```
 
 The above mentioned examples will provide an Axis that will format its scale values to their DateTime-representations. This conversion relies on a reference date, further referred to as *origin-date*. This *origin-date* specifies the DateTime value that is equal to *zero* as a numeric representation. Incremental values will result in progressive DateTimes by milliseconds. For example, given *origin-date* is equal to the **1st of January 2002, 2PM**, a numeric value of **7,200,000** would be translated to **1st of January 2002 4PM**.
 
-As such, the *origin-date* must be able to be specified to whichever DateTime is desired. It is done by passing a *javascript Date object* to the function that creates the *DateTime TickStrategy*:
+Translating this to how we can modify the origin date in our Axis, we can do this by adding a mutator to the setTickStrategy() method to modify the origin date:
 
 ```javascript
 // Define the origin-date. (y, m [0-11], d [1-31], h [0-23])
 const originDate = new Date(2002, 0, 1, 13)
 // Create DateTime AxisTickStrategy with specified originDate.
-const dateTimeTickStrategy = AxisTickStrategies.DateTime(originDate)
+chart.getDefaultAxisX()
+    .setTickStrategy(
+        AxisTickStrategies.DateTime,
+        // Use a mutator to set the origin date for this Axis' TickStrategy
+        (tickStrategy) => tickStrategy.setDateOrigin(originDate)
+    )
 ```
 
 If this *TickStrategy* would be supplied to an *X-Axis*, it would effectively mean that its scale would start from 1st of January 2002 14PM, so a *XY-point* with coordinates `{ x: 0, y: 0 }` would be formated as `{ x: "1.1.2002 14:00", y: 0 }`.
@@ -54,9 +54,9 @@ It is worth mentioning that big *DateTime*-intervals can produce severe precisio
 
 ## API Links
 
-* Axis tick strategies: [AxisTickStrategies]
-* XY cartesian chart: [ChartXY]
-* Progressive line series: [ProgressiveLineSeries]
+* [Axis tick strategies]
+* [XY cartesian chart]
+* [Progressive line series]
 
 
 ## Support
@@ -80,7 +80,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[AxisTickStrategies]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#axistickstrategies
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[ProgressiveLineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/progressivelineseries.html
+[Axis tick strategies]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#axistickstrategies
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Progressive line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/progressivelineseries.html
 

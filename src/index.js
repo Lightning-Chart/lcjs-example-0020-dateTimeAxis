@@ -8,15 +8,23 @@ const lcjs = require('@arction/lcjs')
 const {
     lightningChart,
     AxisTickStrategies,
-    DataPatterns
+    DataPatterns,
+    Themes
 } = lcjs
 
 // Create a XY Chart.
 const dateOrigin = new Date(2008, 0, 1)
 const chart = lightningChart().ChartXY({
-    defaultAxisXTickStrategy: AxisTickStrategies.DateTime(dateOrigin)
+    // theme: Themes.dark
 })
-    .setTitle('Customer Satisfaction')
+chart.getDefaultAxisX()
+    .setTickStrategy(
+        // Use DateTime TickStrategy for this Axis
+        AxisTickStrategies.DateTime,
+        // Modify the DateOrigin of the TickStrategy
+        (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
+    )
+chart.setTitle('Customer Satisfaction')
 
 chart.setPadding({ right: '5' })
 

@@ -26,11 +26,8 @@ chart.getDefaultAxisX()
     )
 chart.setTitle('Customer Satisfaction')
 
-chart.setPadding({ right: '5' })
-
-// Add a progressive line series.
-// Using the DataPatterns object to select the horizontalProgressive pattern for the line series.
-const lineSeries = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
+// Add a line series.
+const lineSeries = chart.addLineSeries()
     .setName('Customer Satisfaction')
 
 // Generate some points using for each month
@@ -171,7 +168,7 @@ const satisfactionData = [
 lineSeries.add(satisfactionData.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
 
 // Show the customized result table for each point
-lineSeries.setResultTableFormatter((builder, series, xValue, yValue) => {
+lineSeries.setCursorResultTableFormatter((builder, series, xValue, yValue) => {
     return builder
         .addRow('Customer Satisfaction')
         .addRow(series.axisX.formatValue(xValue))

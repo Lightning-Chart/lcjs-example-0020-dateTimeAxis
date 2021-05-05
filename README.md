@@ -56,7 +56,7 @@ It is worth mentioning that big *DateTime*-intervals can produce severe precisio
 
 * [Axis tick strategies]
 * [XY cartesian chart]
-* [Progressive line series]
+* [Line series]
 
 
 ## Support
@@ -80,7 +80,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[Axis tick strategies]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/globals.html#axistickstrategies
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/chartxy.html
-[Progressive line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/progressivelineseries.html
+[Axis tick strategies]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/globals.html#axistickstrategies
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/chartxy.html
+[Line series]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/lineseries.html
 

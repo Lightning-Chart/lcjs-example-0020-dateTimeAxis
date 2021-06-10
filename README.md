@@ -1,6 +1,6 @@
-# DateTime Axis
+# JavaScript Chart with DateTime Axis
 
-![DateTime Axis](dateTimeAxis.png)
+![JavaScript Chart with DateTime Axis](dateTimeAxis.png)
 
 This demo application belongs to the set of examples for LightningChart JS, data visualization library for JavaScript.
 

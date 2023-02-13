@@ -5,39 +5,29 @@
 const lcjs = require('@arction/lcjs')
 
 // Extract required parts from LightningChartJS.
-const {
-    lightningChart,
-    AxisTickStrategies,
-    DataPatterns,
-    Themes
-} = lcjs
+const { lightningChart, AxisTickStrategies, DataPatterns, Themes } = lcjs
 
 // Create a XY Chart.
 const dateOrigin = new Date(2008, 0, 1)
 const chart = lightningChart().ChartXY({
     // theme: Themes.darkGold
 })
-chart.getDefaultAxisX()
-    .setTickStrategy(
-        // Use DateTime TickStrategy for this Axis
-        AxisTickStrategies.DateTime,
-        // Modify the DateOrigin of the TickStrategy
-        (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
-    )
+chart.getDefaultAxisX().setTickStrategy(
+    // Use DateTime TickStrategy for this Axis
+    AxisTickStrategies.DateTime,
+    // Modify the DateOrigin of the TickStrategy
+    (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin),
+)
 chart.setTitle('Customer Satisfaction')
 
 // Add a line series.
-const lineSeries = chart.addLineSeries()
-    .setName('Customer Satisfaction')
+const lineSeries = chart.addLineSeries().setName('Customer Satisfaction')
 
 // Generate some points using for each month
 const dataFrequency = 30 * 24 * 60 * 60 * 1000
 
 // Setup view nicely.
-chart.getDefaultAxisY()
-    .setScrollStrategy(undefined)
-    .setInterval(0, 100)
-    .setTitle('Satisfaction %')
+chart.getDefaultAxisY().setScrollStrategy(undefined).setInterval({ start: 0, end: 100, stopAxisAfter: false }).setTitle('Satisfaction %')
 
 // Data for the plotting
 const satisfactionData = [
@@ -161,7 +151,7 @@ const satisfactionData = [
     { x: 117, y: 58.2 },
     { x: 118, y: 58.6 },
     { x: 119, y: 59.3 },
-    { x: 120, y: 61 }
+    { x: 120, y: 61 },
 ]
 
 // Adding points to the series
@@ -172,5 +162,5 @@ lineSeries.setCursorResultTableFormatter((builder, series, xValue, yValue) => {
     return builder
         .addRow('Customer Satisfaction')
         .addRow(series.axisX.formatValue(xValue))
-        .addRow(yValue.toFixed(2) + "%")
+        .addRow(yValue.toFixed(2) + '%')
 })

@@ -30,25 +30,7 @@ const chart = lightningChart().ChartXY({})
 chart.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime)
 ```
 
-The above mentioned examples will provide an Axis that will format its scale values to their DateTime-representations. This conversion relies on a reference date, further referred to as _origin-date_. This _origin-date_ specifies the DateTime value that is equal to _zero_ as a numeric representation. Incremental values will result in progressive DateTimes by milliseconds. For example, given _origin-date_ is equal to the **1st of January 2002, 2PM**, a numeric value of **7,200,000** would be translated to **1st of January 2002 4PM**.
-
-Translating this to how we can modify the origin date in our Axis, we can do this by adding a mutator to the setTickStrategy() method to modify the origin date:
-
-```javascript
-// Define the origin-date. (y, m [0-11], d [1-31], h [0-23])
-const originDate = new Date(2002, 0, 1, 13)
-// Create DateTime AxisTickStrategy with specified originDate.
-chart.getDefaultAxisX().setTickStrategy(
-    AxisTickStrategies.DateTime,
-    // Use a mutator to set the origin date for this Axis' TickStrategy
-    (tickStrategy) => tickStrategy.setDateOrigin(originDate),
-)
-```
-
-If this _TickStrategy_ would be supplied to an _X-Axis_, it would effectively mean that its scale would start from 1st of January 2002 14PM, so a _XY-point_ with coordinates `{ x: 0, y: 0 }` would be formated as `{ x: "1.1.2002 14:00", y: 0 }`.
-
-It is worth mentioning that big _DateTime_-intervals can produce severe precision problems (eq. when zooming in). The only way to battle this is by reducing the distance of timestamps from the active _origin-date_.
-
+The above mentioned examples will provide an Axis that will format its scale values to their DateTime-representations. 
 
 ## API Links
 
@@ -78,7 +60,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[Axis tick strategies]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/variables/AxisTickStrategies.html
-[XY cartesian chart]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/ChartXY.html
-[Line series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/LineSeries.html
+[Axis tick strategies]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/variables/AxisTickStrategies.html
+[XY cartesian chart]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/ChartXY.html
+[Line series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/LineSeries.html
 

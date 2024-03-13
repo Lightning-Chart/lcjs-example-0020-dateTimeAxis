@@ -9,7 +9,7 @@ const { lightningChart, AxisTickStrategies, Themes } = lcjs
 
 // Create a XY Chart.
 const chart = lightningChart().ChartXY({
-    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
+    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined
 }).setTitle('Customer Satisfaction')
 
 // Use DateTime TickStrategy for this Axis

@@ -2,31 +2,31 @@
  * LightningChart JS Example that showcases a Customer Satisfaction graph using a LineSeries and DateTime-Axis.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, AxisTickStrategies, Themes } = lcjs
+const { lightningChart, AxisTickStrategies, emptyFill, Themes } = lcjs
 
 // Create a XY Chart.
 const chart = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
-        }).ChartXY({
-    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
-}).setTitle('Customer Satisfaction')
+        })
+    .ChartXY({
+        theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
+    })
+    .setTitle('Customer Satisfaction')
 
 // Use DateTime TickStrategy for this Axis
-chart.getDefaultAxisX().setTickStrategy(
-    AxisTickStrategies.DateTime
-)
+chart.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime)
 
 // Add a line series.
-const lineSeries = chart.addLineSeries().setName('Customer Satisfaction')
+const lineSeries = chart
+    .addPointLineAreaSeries({ dataPattern: 'ProgressiveX' })
+    .setName('Customer Satisfaction')
+    .setAreaFillStyle(emptyFill)
 
 // Setup view nicely.
-chart.getDefaultAxisY()
-    .setScrollStrategy(undefined)
-    .setInterval({ start: 0, end: 100, stopAxisAfter: false })
-    .setTitle('Satisfaction %')
+chart.axisY.setScrollStrategy(undefined).setInterval({ start: 0, end: 100, stopAxisAfter: false }).setTitle('Satisfaction').setUnits('%')
 
 // Data for the plotting
 const satisfactionData = [
@@ -155,11 +155,3 @@ const satisfactionData = [
 
 // Adding points to the series
 lineSeries.add(satisfactionData)
-
-// Show the customized result table for each point
-lineSeries.setCursorResultTableFormatter((builder, series, xValue, yValue) => {
-    return builder
-        .addRow('Customer Satisfaction')
-        .addRow(series.axisX.formatValue(xValue))
-        .addRow(yValue.toFixed(2) + '%')
-})

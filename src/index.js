@@ -12,6 +12,7 @@ const chart = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
         })
     .ChartXY({
+        legend: { visible: false },
         theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     })
     .setTitle('Customer Satisfaction')
@@ -20,10 +21,7 @@ const chart = lightningChart({
 chart.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime)
 
 // Add a line series.
-const lineSeries = chart
-    .addPointLineAreaSeries({ dataPattern: 'ProgressiveX' })
-    .setName('Customer Satisfaction')
-    .setAreaFillStyle(emptyFill)
+const lineSeries = chart.addPointLineSeries().setName('Customer Satisfaction')
 
 // Setup view nicely.
 chart.axisY.setScrollStrategy(undefined).setInterval({ start: 0, end: 100, stopAxisAfter: false }).setTitle('Satisfaction').setUnits('%')
@@ -154,4 +152,4 @@ const satisfactionData = [
 ]
 
 // Adding points to the series
-lineSeries.add(satisfactionData)
+lineSeries.appendJSON(satisfactionData)
